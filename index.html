@@ -1632,7 +1632,7 @@ async function autoSync(manual){if(syncing)return;syncing=true;const b=$("syncBt
     const p=await fetch("datos/paquete.json?t="+Date.now(),{cache:"no-store"});if(!p.ok)throw new Error("sin paquete");importPkg(await p.text());S.dataSrc="auto";save();renderLabel();
     try{localStorage.setItem("nflvalor:auto",e.creado)}catch(_){}if(b)b.textContent="Actualizado";setTimeout(()=>{if(b)b.textContent="Actualizar"},2500)}
   catch(err){if(b){b.textContent=manual?"Sin conexión":"Actualizar";if(manual)setTimeout(()=>b.textContent="Actualizar",2500)}}
-  finally{syncing=false;if(b)b.disabled=false}}
+  finally{syncing=false;if(b){b.disabled=false;if(b.textContent==="Buscando…")b.textContent="Actualizar"}}}
 
 /* eventos */
 document.querySelectorAll("nav.tabs button").forEach(b=>b.addEventListener("click",()=>showTab(b.dataset.tab)));
@@ -1689,7 +1689,7 @@ if(applyAll()&&games.length){$("selGame").value="0";loadGame(0)}
 renderBands();genAll();renderDS();renderLabel();
 $("syncBtn").onclick=()=>autoSync(true);
 if(/^https?:/.test(location.protocol)&&!/claude|anthropic/.test(location.hostname)){autoSync(false);setInterval(()=>{if(document.visibilityState==="visible")autoSync(false)},30*60*1000);document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")autoSync(false)})}
-if("serviceWorker" in navigator&&location.protocol==="https:"&&!/claude|anthropic/.test(location.hostname)){navigator.serviceWorker.register("sw.js").catch(()=>{})}
+if("serviceWorker" in navigator&&location.protocol==="https:"&&!/claude|anthropic/.test(location.hostname)){navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).then(r=>{try{r.update()}catch(e){}}).catch(()=>{})}
 </script>
 </body>
 </html>
