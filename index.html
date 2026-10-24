@@ -1627,6 +1627,7 @@ document.addEventListener("click",e=>{const b=e.target.closest("[data-reco]");if
 let syncing=false;
 async function autoSync(manual){if(syncing)return;syncing=true;const b=$("syncBtn");if(b){b.disabled=true;b.textContent="Buscando…"}
   try{const r=await fetch("datos/estado.json?t="+Date.now(),{cache:"no-store"});if(!r.ok)throw new Error("sin datos");const e=await r.json();let last="";try{last=localStorage.getItem("nflvalor:auto")||""}catch(_){}
+    if(!S.dataWeek)last="";
     if(!manual&&e.creado===last){return}
     if(manual&&e.creado===last){if(b)b.textContent="Ya al día";setTimeout(()=>{if(b)b.textContent="Actualizar"},2500);return}
     const p=await fetch("datos/paquete.json?t="+Date.now(),{cache:"no-store"});if(!p.ok)throw new Error("sin paquete");importPkg(await p.text());S.dataSrc="auto";save();renderLabel();
@@ -1686,6 +1687,7 @@ load();yardMarks();buildSliders();syncOutputs();
 $("teamsCsv").value=teamsCsvText;$("gamesCsv").value=gamesCsvText;$("injCsv").value=injCsvText;$("propsCsv").value=propsCsvText;
 if(!Array.isArray(S.bands))S.bands=DEFAULTS.bands.map(b=>b.slice());else S.bands=S.bands.map(b=>b.slice());
 if(applyAll()&&games.length){$("selGame").value="0";loadGame(0)}
+{const mw=/Semana (\d+)/.exec(S.dataLabel||"");if(!S.dataWeek&&mw&&S.dataSrc==="auto"){S.dataWeek=+mw[1];save();renderAll()}}
 renderBands();genAll();renderDS();renderLabel();
 $("syncBtn").onclick=()=>autoSync(true);
 if(/^https?:/.test(location.protocol)&&!/claude|anthropic/.test(location.hostname)){autoSync(false);setInterval(()=>{if(document.visibilityState==="visible")autoSync(false)},30*60*1000);document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")autoSync(false)})}
