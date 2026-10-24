@@ -176,7 +176,7 @@ footer .age{flex:none;width:34px;height:34px;border-radius:50%;border:2px solid 
   <div class="topbar-in">
     <div class="brand">
       <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><path d="M9 3v12a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V3M16 18v11" fill="none" stroke="#4FB386" stroke-width="2.6" stroke-linecap="round"/></svg>
-      <div><b>Línea de valor</b><span>NFL 2026, semana 6</span></div>
+      <div><b>Línea de valor</b><span id="brandSub">NFL 2026, semana 6</span></div>
     </div>
     <div class="meta">Actualizado el <b>18 de octubre</b><br>Estadísticas hasta la semana 5</div>
     <button class="themebtn" id="syncBtn" aria-label="Buscar datos nuevos">Actualizar</button>
@@ -373,6 +373,7 @@ footer .age{flex:none;width:34px;height:34px;border-radius:50%;border:2px solid 
 
   <!-- ANOTADORES -->
   <section class="panel" id="p-props" hidden>
+    <div id="propsStale"></div>
     <div class="block tbl">
       <h2>Anotador en cualquier momento</h2>
       <p class="hint">Probabilidad de que el jugador anote al menos un touchdown. Se parte de sus TD por partido, se suaviza hacia una media por posición (con 5 partidos hay mucha suerte) y se escala por los puntos que el modelo espera de su equipo. Si hay cuota, la probabilidad final se mezcla con la del mercado (sin margen) según el peso del mercado del modelo. Escribe la cuota de tu casa en la columna Cuota para ver si hay valor.</p>
@@ -1240,7 +1241,7 @@ function ppRows(){
   });
 }
 function ppCalc(){return ppRows().filter(Boolean).flatMap(r=>r.legs)}
-function renderPP(){
+function renderPP(){const ps=$("propsStale");if(ps)ps.innerHTML=propsFresh()?"":`<div class="note" style="margin:0 0 14px;border-left-color:var(--bad)"><b>Estas líneas son de la semana ${S.propsWeek||6} y ya no valen para la semana ${curWeek()}.</b> Las props de jugador y las cuotas de anotador no se descargan solas. Carga las nuevas en Cargar datos (Props de jugador y Anotadores de TD) con las líneas de tu casa. Mientras tanto no se usan en los parlays.</div>`;
   const side=(l)=>{if(!l)return"<td>—</td>";legPool[l.id]=l;const ev=l.p*l.d-1;return`<td style="white-space:nowrap">${pct(l.p)} · ${l.d.toFixed(2)} · ${evTxt(ev)} ${addBtn(l.id)}</td>`};
   $("ppBody").innerHTML=ppRows().map((r,i)=>{const x=pprops[i];if(!r)return"";
     const lo=r.legs.find(l=>l.id.endsWith("|O")),lu=r.legs.find(l=>l.id.endsWith("|U"));
@@ -1286,8 +1287,8 @@ function candidateGroups(minP){
   if(S.apProps){
     fgCalc().forEach(f=>{if(!byGame[f.game])return;const d=f.d||(S.apFgEst?f.dEst:null);if(d)byGame[f.game].push({id:f.id,desc:`${f.T.id}: más de 1,5 FG (${f.T.kname})`,game:f.game,d,p:f.p2,tipo:"FG",est:!f.d})});
     fgGames().forEach(f=>{if(!byGame[f.key])return;const d=f.d||(S.apFgEst?f.dEst:null);if(d)byGame[f.key].push({id:f.id,desc:`${f.key}: más de 3,5 FG en el partido`,game:f.key,d,p:f.p4,tipo:"FG",est:!f.d})});
-    props.forEach(pl=>{const d=toDec(pl.cuota);if(!d)return;const r=propProb(pl);if(r&&byGame[r.game])byGame[r.game].push({id:"TD|"+pl.equipo+"|"+pl.jugador,desc:`${pl.jugador} anota TD`,game:r.game,d,p:r.p,fair:r.pmk,tipo:"TD"})});
-    ppCalc().forEach(x=>{if(byGame[x.game])byGame[x.game].push(x)});
+    if(propsFresh())props.forEach(pl=>{const d=toDec(pl.cuota);if(!d)return;const r=propProb(pl);if(r&&byGame[r.game])byGame[r.game].push({id:"TD|"+pl.equipo+"|"+pl.jugador,desc:`${pl.jugador} anota TD`,game:r.game,d,p:r.p,fair:r.pmk,tipo:"TD"})});
+    if(propsFresh())ppCalc().forEach(x=>{if(byGame[x.game])byGame[x.game].push(x)});
   }
   const ex=new Set(S.apExcl||[]),mm=S.apMode==="matchup";
   const okM=l=>!mm||(l.est?false:l.fair==null?false:l.tipo==="jugador"?(l.mu===1&&l.p>l.fair+0.01):l.p>l.fair+0.005);
@@ -1383,8 +1384,9 @@ function renderSummary(){
   const bets=[];games.forEach(g=>{const R=projectGame(g);if(R)gameBets(g,R).forEach(b=>bets.push(b))});
   const vb=bets.filter(isValue).sort((a,b)=>b.ev-a.ev).slice(0,5);
   $("sumValue").innerHTML=vb.length?vb.map(b=>li(`${b.side==="H"?bdg(b.name.split(" en ")[1],16)+" ":b.side==="A"?bdg(b.name.split(" en ")[0],16)+" ":""}${esc(b.lbl)}`,`${esc(b.name)}, cuota ${b.d.toFixed(2)}, modelo ${pct(b.p)} frente a ${pct(b.fair)} de la casa`,evTxt(b.ev))).join(""):li("Ninguna apuesta supera la ventaja mínima","Baja la ventaja mínima en Modelo para ver más","");
+  if(!propsFresh()){$("sumProps").innerHTML=li(`Líneas de props de la semana ${S.propsWeek||6}`,`Las props no se descargan solas. Carga las de la semana ${curWeek()} en Cargar datos (Props de jugador y Anotadores) para volver a verlas aquí.`,"")}else{
   const pl=ppCalc().filter(l=>l.mu===1&&l.fair!=null&&l.p>l.fair+0.01).sort((a,b)=>(b.p-b.fair)-(a.p-a.fair)).slice(0,5);
-  $("sumProps").innerHTML=pl.length?pl.map(l=>li(esc(l.desc),esc(l.mtxt),`${l.d.toFixed(2)}<br><span style="font-weight:400;color:var(--muted);font-size:.78rem">${pct(l.p)}</span>`)).join(""):li("Sin props destacadas","","");
+  $("sumProps").innerHTML=pl.length?pl.map(l=>li(esc(l.desc),esc(l.mtxt),`${l.d.toFixed(2)}<br><span style="font-weight:400;color:var(--muted);font-size:.78rem">${pct(l.p)}</span>`)).join(""):li("Sin props destacadas","","");}
   const pr=[];games.forEach(g=>{const key=`${g.visitante} en ${g.local}`,m=mktFor(key);if(!m)return;const z=mktSignals(m,g);if(!z.why.includes("reportado")&&!/over|under/.test(String(m.pro||"")))return;pr.push({key,z,g,m})});
   $("sumPro").innerHTML=pr.slice(0,6).map(({key,z,g,m})=>li(keyB(key),esc(String(m.nota||"").split(";")[0]),[z.spro&&nm(g,z.spro),z.tpro&&nm(g,z.tpro)].filter(Boolean).map(esc).join(" y "),"pos")).join("")||li("Sin señales claras","","");
   const fg=fgGames().sort((a,b)=>b.lam-a.lam).slice(0,4);
@@ -1542,13 +1544,16 @@ function transformRaw(o){
   return{week,games:toCSV(gh,games),teams:teamsOut,inj:injOut,mkt:toCSV(mh,mRows),log,warn};
 }
 
+const curWeek=()=>S.dataWeek||6;
+const propsFresh=()=>(S.propsWeek||6)>=curWeek();
+const recoFresh=()=>curWeek()===6;
 /* cargar datos */
 const DS=[
  {k:"games",name:"Partidos, cuotas, clima y tendencias",get:()=>gamesCsvText,set:v=>{gamesCsvText=v;$("gamesCsv").value=v},def:()=>DATA_GAMES,tab:"jornada",need:["local","visitante"],src:"Las cuotas de tu casa de apuestas (hándicap, total y ganador) y la previsión del tiempo de cada estadio."},
  {k:"teams",name:"Estadísticas de equipos",get:()=>teamsCsvText,set:v=>{teamsCsvText=v;$("teamsCsv").value=v},def:()=>DATA_TEAMS,tab:"datos",need:["equipo","pj","pf","pc"],src:"NFL.com (Stats, Team Stats), Pro-Football-Reference (Share & Export, Get table as CSV) o StatMuse."},
  {k:"inj",name:"Lesiones",get:()=>injCsvText,set:v=>{injCsvText=v;$("injCsv").value=v},def:()=>DATA_INJ,tab:"lesiones",need:["equipo","impacto_pts"],src:"El parte oficial de la NFL, que sale los viernes, y las listas de inactivos del domingo."},
- {k:"pp",name:"Props de jugador",get:()=>ppCsvText,set:v=>{ppCsvText=v;$("ppCsv").value=v},def:()=>DATA_PP,tab:"props",need:["equipo","jugador","tipo","linea"],src:"Las líneas de tu casa (yardas, pases, recepciones) y la media por partido del jugador."},
- {k:"props",name:"Anotadores de TD",get:()=>propsCsvText,set:v=>{propsCsvText=v;$("propsCsv").value=v},def:()=>DATA_PROPS,tab:"props",need:["jugador","td"],src:"Los TD del jugador en la temporada y la cuota de anotador de tu casa."},
+ {k:"pp",name:"Props de jugador",get:()=>ppCsvText,set:v=>{ppCsvText=v;$("ppCsv").value=v;S.propsWeek=v===DATA_PP?6:curWeek()},def:()=>DATA_PP,tab:"props",need:["equipo","jugador","tipo","linea"],src:"Las líneas de tu casa (yardas, pases, recepciones) y la media por partido del jugador."},
+ {k:"props",name:"Anotadores de TD",get:()=>propsCsvText,set:v=>{propsCsvText=v;$("propsCsv").value=v;S.propsWeek=v===DATA_PROPS?6:curWeek()},def:()=>DATA_PROPS,tab:"props",need:["jugador","td"],src:"Los TD del jugador en la temporada y la cuota de anotador de tu casa."},
  {k:"mkt",name:"Tickets y dinero (mercado)",get:()=>mktCsvText,set:v=>{mktCsvText=v;$("mktCsv").value=v},def:()=>DATA_MKT,tab:"mkt",need:["local","visitante"],src:"Porcentajes de apuestas y de dinero de Action Network, Covers, VegasInsider o tu casa."}
 ];
 const headerOf=t=>(String(t).split(/\r?\n/).find(l=>l.trim()&&!l.trim().startsWith("#"))||"").trim();
@@ -1571,7 +1576,7 @@ function renderDS(){
       </div><div class="msg" id="dsMsg${i}"></div></div>`}).join("");
   $("dataLabel").value=S.dataLabel||"";
 }
-function renderLabel(){const m=document.querySelector(".topbar .meta");if(m)m.innerHTML=S.dataLabel?`Datos: <b>${esc(S.dataLabel)}</b><br>${S.dataSrc==="auto"?"Actualización automática":"Cargados por ti"}`:`Actualizado el <b>18 de octubre</b><br>Estadísticas hasta la semana 5`}
+function renderLabel(){const bs=$("brandSub");if(bs)bs.textContent=`NFL ${S.dataSeason||2026}, semana ${S.dataWeek||6}`;const m=document.querySelector(".topbar .meta");if(m)m.innerHTML=S.dataLabel?`Datos: <b>${esc(S.dataLabel)}</b><br>${S.dataSrc==="auto"?"Actualización automática":"Cargados por ti"}`:`Actualizado el <b>18 de octubre</b><br>Estadísticas hasta la semana 5`}
 document.addEventListener("change",e=>{const i=e.target.dataset&&e.target.dataset.dsfile;if(i===undefined)return;const f=e.target.files[0];if(!f)return;const r=new FileReader();
   r.onload=()=>{const err=loadDS(DS[+i],String(r.result));renderDS();const m=$("dsMsg"+i);m.className=err?"msg err":"msg ok";{const k=parseCSV(DS[+i].get()).rows.length;m.textContent=err||`${k} ${k===1?"fila cargada":"filas cargadas"} de ${f.name}.`}};r.readAsText(f)});
 document.addEventListener("click",e=>{const t=e.target.closest("[data-dsedit],[data-dstpl],[data-dsdown],[data-dsreset]");if(!t)return;
@@ -1584,7 +1589,7 @@ function importPkg(txt){S.dataSrc="";const m=$("pkgMsg");setTimeout(()=>{try{m.s
   if(o.tipo==="crudo"){let T;try{T=transformRaw(o)}catch(e){m.className="msg err";m.textContent="No se pudo procesar el paquete del actualizador: "+e.message;return}
     if(T.error){m.className="msg err";m.textContent=T.error;return}
     const map={games:T.games,teams:T.teams,inj:T.inj,mkt:T.mkt},bad=[];DS.forEach(d=>{if(map[d.k]){const err=loadDS(d,map[d.k]);if(err)bad.push(d.name+": "+err)}});
-    const f=o.creado?new Date(o.creado):new Date();S.dataLabel=`Semana ${T.week}, ${f.toLocaleDateString("es-ES",{day:"numeric",month:"long"})}`;save();renderLabel();renderDS();
+    const f=o.creado?new Date(o.creado):new Date();S.dataWeek=T.week;S.dataSeason=+o.temporada||null;S.dataLabel=`Semana ${T.week}, ${f.toLocaleDateString("es-ES",{day:"numeric",month:"long"})}`;save();renderLabel();renderDS();
     m.className=bad.length?"msg err":"msg ok";m.innerHTML=`<b>Actualizado:</b> ${esc(T.log.join(", "))}.`+(T.warn.length?`<br><span class="warn">${T.warn.map(esc).join("<br>")}</span>`:"")+(bad.length?`<br>${bad.map(esc).join("<br>")}`:"")+`<br><span style="color:var(--muted)">Las props de jugador, los anotadores y las notas de profesionales no se descargan solos: se mantienen los anteriores.</span>`;return}
   const done=[],bad=[];DS.forEach(d=>{if(typeof o[d.k]==="string"&&o[d.k].trim()){const err=loadDS(d,o[d.k]);(err?bad:done).push(d.name)}});
   if(o.etiqueta){S.dataLabel=o.etiqueta;save();renderLabel()}
@@ -1605,7 +1610,7 @@ function recoCalc(){const pool=allLegsPool();return RECO.map(r=>{const L=[],miss
   if(r.sys&&L.length>r.sys){const s1=sysEval(L,r.sys,false),s2=L.every(l=>l.fair!=null)?sysEval(L,r.sys,true):null;P=s1.pp;M=s2?s2.pp:null;mx=s1.mx;m1=s1.miss1;D=null}
   return{...r,L,miss,D,P,M,mx,m1}})}
 let recoRes=[];
-function renderReco(){recoRes=recoCalc();const st=S.apStake||50;
+function renderReco(){if(!recoFresh()){recoRes=[];$("recoBox").innerHTML=`<div class="block" style="grid-column:1/-1;background:var(--surface-2)"><b>Los parlays recomendados eran de la semana 6.</b><p class="hint" style="margin:6px 0 0">Para la semana ${curWeek()} usa los Parlays automáticos y el Buscador de alta probabilidad de esta misma pestaña, que se calculan con los datos nuevos. Si quieres, pídeme una selección nueva para esta jornada.</p></div>`;$("sumReco").innerHTML=li("Selección de la semana 6 caducada","Usa los Parlays automáticos con los datos de esta semana","");return}recoRes=recoCalc();const st=S.apStake||50;
   $("recoBox").innerHTML=recoRes.map((r,i)=>`<div class="block" style="background:var(--surface-2)"><h3 style="margin-bottom:2px">${esc(r.name)}</h3><p class="hint" style="margin-bottom:8px">${esc(r.n)}. ${esc(r.txt)}</p>
     <ul class="list">${r.L.map(l=>`<li><span class="t" style="font-weight:500">${esc(l.desc)}${l.pro===1?' <span class="tag" style="background:var(--good)">pro</span>':""}${l.mu===1?' <span class="tag" style="background:var(--away)">rival favorable</span>':""}</span><span class="v">${l.d.toFixed(2)}<br><span style="font-weight:400;color:var(--muted);font-size:.78rem">${pct(l.p)}</span></span></li>`).join("")}
     ${r.miss.map(t=>`<li><span class="t neg" style="font-weight:500">${esc(t)}</span><span class="v neg">no disponible</span></li>`).join("")}</ul>
