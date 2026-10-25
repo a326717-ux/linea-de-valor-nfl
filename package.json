@@ -1,0 +1,25 @@
+{
+  "name": "linea-de-valor-nfl",
+  "version": "1.0.0",
+  "description": "Línea de Valor NFL - Modelos, Parlays y Dinero Profesional",
+  "main": "sw.js",
+  "scripts": {
+    "sync": "node -e \"const fs=require('fs'); fs.mkdirSync('www', {recursive:true}); ['index.html','manifest.webmanifest','sw.js'].forEach(f=>fs.copyFileSync(f,'www/'+f)); fs.readdirSync('.').filter(f=>f.startsWith('icon-')).forEach(f=>fs.copyFileSync(f,'www/'+f)); if(fs.existsSync('datos')){ fs.mkdirSync('www/datos', {recursive:true}); fs.readdirSync('datos').forEach(f=>fs.copyFileSync('datos/'+f, 'www/datos/'+f)); }\" && cap sync android",
+    "build": "npm run sync"
+  },
+  "keywords": [
+    "nfl",
+    "sports-betting",
+    "parlay",
+    "sharp-money",
+    "android",
+    "capacitor"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@capacitor/android": "^7.4.4",
+    "@capacitor/cli": "^7.4.4",
+    "@capacitor/core": "^7.4.4"
+  }
+}

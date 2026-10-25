@@ -178,7 +178,7 @@ footer .age{flex:none;width:34px;height:34px;border-radius:50%;border:2px solid 
       <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><path d="M9 3v12a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V3M16 18v11" fill="none" stroke="#4FB386" stroke-width="2.6" stroke-linecap="round"/></svg>
       <div><b>Línea de valor</b><span id="brandSub">NFL 2026, semana 6</span></div>
     </div>
-    <div class="meta">Actualizado el <b>18 de octubre</b><br>Estadísticas hasta la semana 5</div>
+    <div class="meta">Actualizado el <b>25 de octubre</b><br>Datos y Dinero Profesional: Semana 7</div>
     <button class="themebtn" id="syncBtn" aria-label="Buscar datos nuevos">Actualizar</button>
     <button class="themebtn" id="themeBtn" aria-label="Cambiar tema">Tema: auto</button>
   </div>
@@ -606,7 +606,7 @@ footer .age{flex:none;width:34px;height:34px;border-radius:50%;border:2px solid 
 
   <footer>
     <span class="age" aria-label="Solo mayores de 18 años">+18</span>
-    <span>Datos recopilados el 17 de octubre de 2026 de StatMuse, NFL.com, StatsCrew, VegasInsider, Covers, Fantasy Alarm, Sharp Football Analysis y los informes de lesiones de CBS Sports y RawChili. Líneas, lesiones y clima cambian hasta el saque inicial: revísalos antes de apostar. Los parlays multiplican el margen de la casa y casi siempre tienen peor valor esperado que las apuestas simples. Juega solo lo que puedas permitirte perder. Ayuda: <a href="https://www.jugarbien.es" target="_blank" rel="noopener">jugarbien.es</a>.</span>
+    <span>Datos recopilados el 25 de octubre de 2026 de StatMuse, NFL.com, StatsCrew, VegasInsider, Covers, Fantasy Alarm, Sharp Football Analysis y los informes de lesiones de CBS Sports y RawChili. Líneas, lesiones y clima cambian hasta el saque inicial: revísalos antes de apostar. Los parlays multiplican el margen de la casa y casi siempre tienen peor valor esperado que las apuestas simples. Juega solo lo que puedas permitirte perder. Ayuda: <a href="https://www.jugarbien.es" target="_blank" rel="noopener">jugarbien.es</a>.</span>
   </footer>
 </div>
 
@@ -645,62 +645,117 @@ TB,5,100,112,5.04,5.29,0,38.2,,665,4.9,5,364,3.3,5.2,6.6,1-4,1-4,,0-1,1-3,Chase 
 TEN,5,58,109,4.51,5.2,-1,35.6,,413,3.8,3,570,3.5,5.0,6.9,0-5,2-3,1-4,,,Joey Slye,5,6,0,1,42,2.6
 WAS,5,115,149,5.12,5.49,2,31.9,,698,4.7,4,477,3.9,5.5,6.5,1-3-1,2-3,4-1,,,Drew Stevens,9,11,2,4,57,2.0`;
 const DATA_GAMES=`local,visitante,neutral,linea_local,cuota_linea_local,cuota_linea_visit,total,cuota_over,cuota_under,cuota_ml_local,cuota_ml_visit,hora,techo,viento_mph,lluvia_pct,tendencias
-JAX,HOU,1,-2.5,1.83,2.00,41.5,1.87,1.95,1.68,2.24,Dom 15:30 (Londres),abierto,13,25,JAX 4-1 ganó 19-17 a PHI con un FG de 57 yardas en el último segundo. HOU 1-4 ATS pero viene de ganar 26-3 en TEN. Unos 4 de cada 5 tickets van con JAX y el 70 % de apuestas al under.
-NE,NYJ,0,-7.5,1.95,1.87,43.5,1.89,1.93,1.29,3.70,Dom 19:00,abierto,7,0,NE arrolló 45-17 a LV y viene de ganar en BUF. NYJ 3-1-1 ATS. 77 % de tickets y 91 % del dinero en NE. Según Covers NE va 7-0 ATS en sus últimos 7 como favorito local.
-TB,PIT,0,2.5,1.95,1.87,38.5,1.85,1.98,2.24,1.68,Dom 19:00,abierto,18,5,TB cortó una racha de 13 partidos sin cubrir al ganar 24-16 en DAL como +9.5 con el novato Daniels. PIT alterna victorias y derrotas. 70 % de tickets y 92 % del dinero al over pese al viento. Covers: PIT 7-1 ATS en sus últimos 8 partidos de semana 6.
-CLE,BAL,0,3,1.91,1.91,39.5,1.89,1.93,2.36,1.62,Dom 19:00,abierto,9,0,La baja de Lamar bajó la línea de BAL −5.5 a −3. BAL ganó 30-23 en la prórroga en ATL con Huntley. CLE cayó 17-12 ante NYJ. Dos de cada tres euros al under. Covers: CLE 4-0 ATS en sus últimos 4 en casa.
-ATL,CHI,0,1.5,1.83,2.00,52.5,1.95,1.87,1.98,1.85,Dom 19:00,cubierto,,,Penix juega con las costillas tocadas y Caleb Williams vuelve tras tres partidos. El total subió de 47.5 a 52.5 con casi 9 de cada 10 tickets al over. CHI perdió 31-7 en GB.
-IND,TEN,0,-7,1.95,1.87,44.5,1.89,1.93,1.29,3.70,Dom 19:00,cubierto,,,TEN lleva siete derrotas seguidas contando 2025. 73 % de tickets y 94 % del dinero en IND. Covers: el under va 4-1 en los últimos 5 de TEN y TEN es 3-15 ATS en partidos de división.
-PHI,CAR,0,3,1.95,1.87,39.5,1.98,1.85,2.40,1.60,Dom 19:00,abierto,5,5,La baja de Hurts movió la línea de PHI −1.5 a CAR −3.5. PHI 1-4 ATS y tres derrotas seguidas. CAR llega tras su semana de descanso. PHI 0-3 ATS como favorito este año; ahora es underdog en casa.
-NYG,NO,0,1.5,1.82,2.02,46.5,1.95,1.87,1.91,1.91,Dom 19:00,abierto,7,0,NYG 4-1 ATS y sin perder desde la lesión de Dart; empató 27-27 con WAS. NO 0-3 SU y ATS en sus tres últimos. La línea ha cambiado de favorito varias veces.
-LAR,ARI,0,-12.5,1.89,1.93,51.5,1.89,1.93,1.125,6.50,Dom 22:05,cubierto,,,LAR alterna victorias y derrotas y perdió 37-34 en la prórroga con BUF. ARI suma cuatro derrotas seguidas. 74 % del dinero en LAR y 69 % al under.
-LV,BUF,0,5.5,1.85,1.98,53.5,1.87,1.95,2.85,1.44,Dom 22:25,cubierto,,,BUF 4-1 SU y ATS. LV encajó 45-17 en NE. Total más alto de la jornada con el 90 % del dinero al over; la mayoría de tickets toma los puntos con LV. LV 3-1 ATS como underdog y BUF 3-1 ATS como favorito.
-KC,LAC,0,-7.5,1.93,1.89,41.5,1.95,1.87,1.23,4.40,Dom 22:25,abierto,12,0,Andy Reid va 9-4 tras la semana de descanso con KC. LAC 0-5 y 0-4-1 ATS. El total cayó de 45.5 a 41.5 con 80 % de tickets al under. LAC 0-2-1 ATS como underdog este año.
-GB,DAL,0,-1.5,1.95,1.87,53.5,1.95,1.87,1.85,1.98,Lun 02:20,abierto,10,0,DAL perdió en casa como favorito de 9.5 ante TB. GB ganó 31-7 a CHI. Casi todo el dinero va al over.
-SF,WAS,0,-7.5,1.93,1.89,52.5,1.95,1.87,1.235,4.30,Mar 02:15,abierto,,,SF 5-0 tras ganar 32-29 en SEA. WAS empató 27-27 con NYG tras desperdiciar 14 puntos de ventaja. 73 % de tickets y dinero en SF. Covers: SF 8-1-1 ATS en sus últimos 10 como favorito; el over va 6-1 en los últimos 7 de WAS como underdog.`;
+NO,PIT,1,3,1.92,1.91,44.5,1.9,1.92,2.4,1.59,Dom 14:30 (Stade de France),cubierto,,,PIT 4-2; ATS 4-2 (como favorito 3-1; como underdog 1-1); over 4-2. NO 2-4; ATS 3-3 (como favorito 1-2; como underdog 2-1); over 4-2. Cuotas: media de 20 casas.
+ATL,SF,0,2.5,1.96,1.86,49.5,1.9,1.92,2.24,1.68,Dom 18:00,cubierto,,,SF 6-0; ATS 4-2 (como favorito 2-2; como underdog 2-0); over 3-3. ATL 2-4; ATS 2-4 (como favorito 0-1; como underdog 2-3); over 4-2. Cuotas: media de 21 casas.
+BAL,CIN,0,2.5,1.95,1.88,47,1.92,1.92,2.25,1.67,Dom 18:00,abierto,3,0,CIN 3-2; ATS 2-2-1 (como favorito 1-2-1; como underdog 1-0); over 3-2. BAL 4-2; ATS 2-3-1 (como favorito 1-3-1; como underdog 1-0); over 3-3. Cuotas: media de 21 casas.
+CAR,TB,0,-2.5,1.84,1.98,44.5,1.91,1.91,1.66,2.25,Dom 18:00,abierto,11,0,TB 1-5; ATS 1-4-1 (como favorito 0-1; como underdog 1-3-1); over 3-3. CAR 3-2; ATS 3-2 (como favorito 2-1; como underdog 1-1); over 2-3. Cuotas: media de 21 casas.
+HOU,NYG,0,-10.5,1.95,1.86,42.5,1.9,1.92,1.19,4.75,Dom 18:00,cubierto,,,NYG 3-2-1; ATS 4-2 (como favorito 1-0; como underdog 3-2); over 4-2. HOU 2-4; ATS 2-4 (como favorito 1-3; como underdog 1-1); over 3-3. Cuotas: media de 20 casas.
+MIN,IND,0,-6.5,1.92,1.9,41.5,1.91,1.91,1.34,3.35,Dom 18:00,cubierto,,,IND 2-4; ATS 3-3 (como favorito 1-1; como underdog 2-2); over 4-2. MIN 5-0; ATS 4-1 (como favorito 3-1; como underdog 1-0); over 1-4. Cuotas: media de 21 casas.
+NYJ,MIA,0,-4.5,1.91,1.91,39.5,1.94,1.87,1.44,2.85,Dom 18:00,abierto,5,0,MIA 0-5; ATS 1-3-1 (como favorito 0-0; como underdog 1-3-1); over 2-3. NYJ 2-4; ATS 4-1-1 (como favorito 1-0; como underdog 3-1-1); over 2-4. Cuotas: media de 21 casas.
+TEN,CLE,0,2,1.89,1.91,37,1.92,1.92,2.1,1.75,Dom 18:00,abierto,3,0,CLE 4-2; ATS 4-2 (como favorito 0-0; como underdog 4-2); over 3-3. TEN 1-5; ATS 3-3 (como favorito 0-1; como underdog 3-2); over 2-4. Cuotas: media de 21 casas.
+ARI,DEN,0,4.5,1.91,1.91,43.5,1.92,1.88,2.86,1.44,Dom 21:05,cubierto,,,DEN 4-2; ATS 4-2 (como favorito 3-0; como underdog 1-2); over 1-5. ARI 2-4; ATS 3-3 (como favorito 0-1; como underdog 3-2); over 3-3. Cuotas: media de 21 casas.
+DET,GB,0,-3.5,1.94,1.87,53.5,1.9,1.92,1.53,2.53,Dom 21:25,cubierto,,,GB 4-2; ATS 2-3-1 (como favorito 0-2-1; como underdog 2-1); over 2-4. DET 3-2; ATS 1-3-1 (como favorito 1-2-1; como underdog 0-1); over 5-0. Cuotas: media de 21 casas.
+LV,LAR,0,3.5,1.84,1.94,48.5,1.92,1.9,2.48,1.57,Dom 21:25,cubierto,,,LAR 2-4; ATS 2-4 (como favorito 2-3; como underdog 0-1); over 3-3. LV 3-3; ATS 5-1 (como favorito 1-0; como underdog 4-1); over 4-2. Cuotas: media de 21 casas.
+SEA,KC,0,-2.5,1.81,1.97,42.5,1.91,1.91,1.67,2.24,Lun 01:20,abierto,6,20,KC 5-0; ATS 3-2 (como favorito 3-2; como underdog 0-0); over 2-3. SEA 3-3; ATS 1-3-2 (como favorito 1-3-2; como underdog 0-0); over 3-3. Cuotas: media de 21 casas.
+PHI,DAL,0,4.5,1.92,1.91,44,1.91,1.91,2.8,1.44,Mar 01:15,abierto,4,0,DAL 2-4; ATS 2-3-1 (como favorito 1-3; como underdog 1-0-1); over 4-2. PHI 2-4; ATS 1-5 (como favorito 0-3; como underdog 1-2); over 3-3. Cuotas: media de 21 casas.`;
 const DATA_INJ=`equipo,jugador,pos,estado,impacto_pts,nota
-BAL,Lamar Jackson,QB,Fuera,-4,Segundo partido seguido; juega Tyler Huntley
-BAL,Cam Jurgens,C,Fuera,-0.5,Protocolo de conmoción
-PHI,Jalen Hurts,QB,Fuera,-4.5,Va a la reserva de lesionados; juega Tanner McKee
-PHI,Saquon Barkley,RB,Fuera,-1,Isquiotibial
-PHI,Jalyx Hunt,OLB,Fuera,-0.5,
-TB,Baker Mayfield,QB,Fuera,-2.5,Pulgar; tercer partido de Jalon Daniels
-TB,Antoine Winfield Jr.,S,Fuera,-0.5,Costillas
-HOU,David Montgomery,RB,Fuera,-0.5,No viajó a Londres
-HOU,Jalen Pitre,S,Fuera,-0.5,Hombro
-KC,Rashee Rice,WR,Fuera,-1,Isquiotibial
-KC,Josh Simmons,OT,Fuera,-0.5,Espalda
-LAC,Joe Alt,OT,Fuera,-1,Cuello
-LAC,Derwin James,S,Fuera,-1,Isquiotibial
-LAC,Bud Dupree,OLB,Fuera,-0.5,
-LAC,Tre Harris,WR,Fuera,-0.5,
-NYJ,Breece Hall,RB,Fuera,-0.5,Cuádriceps
-ARI,Jeremiyah Love,RB,Fuera,-0.5,Tobillo
-PIT,DK Metcalf,WR,Disponible,0,Salió del parte el sábado; Roman Wilson y Skowronek fuera
-GB,Javon Hargrave,DT,Fuera,-0.5,Aquiles
-DAL,Cobie Durant,CB,Fuera,-0.5,
-LAR,Trent McDuffie,CB,Duda,-0.5,No entrenó el viernes
-WAS,Deebo Samuel,WR,Fuera,-0.5,Partido del lunes
-ATL,C.J. Henderson,CB,Fuera,-0.5,Ingle
-CHI,Caleb Williams,QB,Juega,0,Los Bears confirman que vuelve tras tres partidos fuera
-NE,A.J. Brown,WR,Duda,0,Puede volver de la reserva de lesionados
-IND,Tyler Warren,TE,Duda,0,Ingle; añadido el viernes
-NO,Chris Olave,WR,Duda,0,Enfermedad; se espera que juegue
-CLE,Dillon Gabriel,QB,Fuera,0,Comprueba quién es el titular`;
+ARI,Andrew Wingard,S,Fuera,-0.3,Automático: Knee
+ARI,Jon Gaines II,G,Fuera,-0.3,Automático: Knee
+ARI,Walter Nolen,DT,Fuera,-0.3,Automático: Ankle
+ARI,Jeremiyah Love,RB,Fuera,-0.5,Automático: Ankle
+ARI,Carson Beck,QB,Duda,-1,Automático: Back
+ATL,Olamide Zaccheaus,WR,Duda,0,Automático: Shoulder
+ATL,Divine Deablo,LB,Fuera,-0.3,Automático: Forearm
+ATL,Brian Robinson,RB,Fuera,-0.5,Automático: Hamstring
+ATL,Michael Jerrell,T,Fuera,-0.3,Automático: Biceps
+ATL,Billy Bowman Jr.,CB,Fuera,-0.3,Automático: Hamstring
+ATL,Beaux Collins,WR,Duda,0,Automático: Hip
+BAL,Lamar Jackson,QB,Duda,-1,Automático: Ankle
+BAL,Jaylinn Hawkins,S,Fuera,-0.3,Automático: Knee
+BAL,Tavius Robinson,LB,Fuera,-0.3,Automático: Pectoral
+BAL,T.J. Tampa,CB,Dudoso,-0.2,Automático: Knee
+CAR,Jaelan Phillips,LB,Fuera,-0.3,Automático: Hamstring
+CAR,Thomas Incoom,LB,Fuera,-0.3,Automático: Calf
+CHI,T.J. Edwards,LB,Dudoso,-0.2,Automático: Hamstring
+CHI,Jack Sanborn,LB,Fuera,-0.3,Automático: Concussion
+CHI,Kyle Monangai,RB,Fuera,-0.5,Automático: Thumb
+CLE,Teven Jenkins,G,Fuera,-0.3,Automático: Back
+CLE,Kalia Davis,DT,Fuera,-0.3,Automático: Quadricep
+CLE,Mike Hall Jr.,DT,Fuera,-0.3,Automático: Ankle
+CLE,Dylan Sampson,RB,Duda,0,Automático: Knee
+CLE,Dillon Gabriel,QB,Fuera,-4,Automático: Back
+DEN,Talanoa Hufanga,S,Fuera,-0.3,Automático: Ankle
+DEN,Tyler Badie,RB,Fuera,-0.5,Automático: Thumb
+DEN,Jonah Elliss,LB,Fuera,-0.3,Automático: Ankle
+DEN,Jonah Coleman,RB,Duda,0,Automático: Ankle
+GB,Zaire Franklin,LB,Fuera,-0.3,Automático: Shin
+GB,Bo Melton,WR,Duda,0,Automático: Back
+HOU,David Montgomery,RB,Fuera,-0.5,Automático: Groin
+HOU,Reed Blankenship,S,Fuera,-0.3,Automático: Concussion
+HOU,Jalen Pitre,S,Fuera,-0.3,Automático: Shoulder
+HOU,Tank Dell,WR,Duda,0,Automático: Knee
+HOU,Blake Fisher,T,Fuera,-0.3,Automático: Thumb
+IND,Sauce Gardner,CB,Fuera,-0.3,Automático: Calf
+IND,Anthony Gould,WR,Fuera,-0.5,Automático: Concussion
+IND,Tyler Warren,TE,Fuera,-0.5,Automático: Groin
+KC,Jaylon Moore,T,Fuera,-0.3,Automático: Concussion
+KC,Rashee Rice,WR,Fuera,-0.5,Automático: Hamstring
+KC,Brashard Smith,RB,Fuera,-0.5,Automático: Hamstring
+LAR,Nate Landman,LB,Fuera,-0.3,Automático: Concussion
+LAR,Puka Nacua,WR,Duda,0,Automático: Calf
+LV,Carter Runyon,TE,Fuera,-0.5,Automático: Foot
+LV,Dont'e Thornton Jr.,WR,Fuera,-0.5,Automático: Hamstring
+LV,Mike Washington Jr.,RB,Duda,0,Automático: Foot
+MIA,Reese Taylor,CB,Fuera,-0.3,Automático: Quadricep
+MIA,Rob Beal Jr.,DE,Dudoso,-0.2,Automático: Hamstring
+MIN,Jordan Mason,RB,Duda,0,Automático: Thumb
+NE,Carlton Davis III,CB,Fuera,-0.3,Automático: Neck
+NE,Alijah Vera-Tucker,G,Fuera,-0.3,Automático: Hamstring
+NE,Ben Brown,C,Fuera,-0.3,Automático: Knee
+NE,Karon Prunty,CB,Fuera,-0.3,Automático: Hamstring
+NE,Channing Canada,CB,Fuera,-0.3,Automático: Hamstring
+NYG,Tremaine Edmunds,LB,Fuera,-0.3,Automático: Shoulder
+NYG,Greg Newsome II,CB,Fuera,-0.3,Automático: Concussion
+NYG,Theo Johnson,TE,Dudoso,-0.4,Automático: Neck
+NYJ,Kene Nwangwu,RB,Duda,0,Automático: Knee
+NYJ,Joseph Ossai,DE,Fuera,-0.3,Automático: Ankle
+NYJ,Max Mitchell,T,Fuera,-0.3,Automático: Concussion
+NYJ,Breece Hall,RB,Duda,0,Automático: Quadricep
+NYJ,Francisco Mauigoa,LB,Fuera,-0.3,Automático: Quadricep
+PIT,Rico Dowdle,RB,Duda,0,Automático: Knee
+PIT,Brandin Echols,CB,Fuera,-0.3,Automático: Hamstring
+PIT,Ben Skowronek,WR,Fuera,-0.5,Automático: Calf
+SEA,Drew Lock,QB,Duda,-1,Automático: Elbow
+SEA,Chazz Surratt,LB,Fuera,-0.3,Automático: Calf
+SEA,Drake Thomas,LB,Fuera,-0.3,Automático: Ankle
+SEA,Zach Charbonnet,RB,Fuera,-0.5,Automático: Knee
+SF,Mike Evans,WR,Fuera,-0.5,Automático: Ribs
+SF,Christian Kirk,WR,Duda,0,Automático: Calf
+SF,Luke Gifford,LB,Fuera,-0.3,Automático: Groin
+SF,Nick Bosa,DE,Fuera,-0.3,Automático: Knee
+SF,Deebo Samuel Sr.,WR,Fuera,-0.5,Automático: Hamstring
+SF,Garret Wallow,LB,Fuera,-0.3,Automático: Hamstring
+SF,Marques Sigle,S,Fuera,-0.3,Automático: Ankle
+TB,Baker Mayfield,QB,Duda,-1,Automático: Thumb
+TB,Antoine Winfield Jr.,S,Fuera,-0.3,Automático: Rib
+TB,Luke Goedeke,T,Fuera,-0.3,Automático: Calf
+TB,Emeka Egbuka,WR,Fuera,-0.5,Automático: Concussion
+TEN,Calvin Ridley,WR,Duda,0,Automático: Hip
+TEN,Tyjae Spears,RB,Duda,0,Automático: Not injury related - resting player`;
 const DATA_MKT=`local,visitante,ap_linea,ap_total,apuestas_local,dinero_local,apuestas_over,dinero_over,pro,nota
-JAX,HOU,-3,42.5,76,66,44,57,over,La Borgata ve algo más de dinero en JAX sin gran movimiento; en el total el over recibe más dinero que tickets
-NE,NYJ,-7.5,43.5,77,82,73,,,Favorito claro del público en el hándicap y en el over
-TB,PIT,3,40.5,34,32,70,92,local,Dinero profesional en TB +3; el over se lleva el 92 % del dinero pese al viento
-CLE,BAL,5.5,,53,65,,,local,La línea bajó de BAL −5.5 a −3 con la baja de Lamar; dinero profesional en CLE +4.5 y +4
-ATL,CHI,3,47,57,85,87,97,local,Profesionales con ATL de +3 a +1.5; casi todo el dinero al over
-IND,TEN,-7,44.5,74,90,,,over,Dinero profesional al over 44
-PHI,CAR,-1.5,,39,58,74,,visitante,La línea pasó de PHI −1.5 a CAR −3 por la baja de Hurts; más tickets en CAR pero más dinero en PHI; profesionales con CAR −3
-NYG,NO,,44.5,55,50,,97,,Partido igualado: 55 % de tickets en NYG con el dinero dividido; el 97 % del dinero al over
-LAR,ARI,-14.5,47.5,64,44,,,visitante,64 % de tickets con LAR pero la mayoría del dinero con ARI y la línea bajó de −14.5 a −12.5
-LV,BUF,6,52.5,29,48,73,87,local,Profesionales con LV +5.5; en ganador LV tiene el 12 % de tickets pero el 50 % del dinero
-KC,LAC,,45.5,64,70,57,15,visitante under,Profesionales con LAC +7.5 y el under 42.5; el total cayó de 45.5 a 41.5 con el 85 % del dinero al under
-GB,DAL,1,50.5,62,60,89,96,over,Abrió DAL −1 y ahora es GB −1.5; dinero respetado al over que subió de 50.5 a 53.5
-SF,WAS,-7.5,50.5,63,94,,,,El 94 % del dinero en SF −7.5: favorito del público y de las apuestas grandes`;
+NO,PIT,1.5,41.5,53,47,45,52,local over,Partido en París. La línea abrió PIT -1.5 y subió a -3.5; dinero profesional apoyando a NO en +3.5 y el over que subió 3 puntos.
+ATL,SF,4.5,47.5,35,55,59,74,local over,Movimiento inverso (RLM): el 65 % de tickets va con SF pero la línea cayó a +2.5 a favor de ATL. En total fuerte dinero al over de 47.5 a 50.5.
+BAL,CIN,-3.5,51.5,32,30,47,25,visitante under,CIN pasó a favorito -2.5 con fuerte respaldo del dinero. El total se desplomó de 51.5 a 47.5 con el 75 % del dinero al under.
+CAR,TB,1.5,45.5,65,72,63,37,local under,CAR pasó a favorito -3 con dinero profesional continuo. RLM en el total: 63 % de tickets al over pero la línea bajó a 44.5 por dinero profesional al under.
+HOU,NYG,-5.5,43.5,44,54,76,85,local over,Discrepancia: 56 % de tickets en NYG pero 54 % del dinero en HOU; línea subió a -10.5. El 85 % del dinero respalda el over.
+MIN,IND,-2.5,46.5,46,58,68,22,local under,Línea subió a MIN -6.5. Colapso masivo de 5 puntos en total (46.5 a 41.5) con dinero afilado al under pese al 68 % de apuestas públicas al over.
+NYJ,MIA,-2.5,41.5,53,68,67,33,local under,Dinero profesional consolidando NYJ a -4.5. RLM en total: público en el over (67 %) pero el dinero y la línea cayeron 2 puntos hacia el under.
+TEN,CLE,-2.5,40.5,29,25,67,28,visitante under,CLE absorbió la mayoría de tickets (71 %) y dinero dando la vuelta a favorito -1.5. Total cayó a 37.5 con fuerte dinero respetado al under.
+ARI,DEN,7.5,43.5,40,64,50,50,local,Señal clara de RLM: el 60 % de tickets con Denver pero el dinero profesional entró con fuerza en ARI provocando caída de +7.5 a +4.5.
+DET,GB,2.5,50.5,35,58,33,68,local over,Movimiento doble contra el público: 65 % de tickets con GB pero la línea giró a DET -3.5. Total subió 4 puntos a 54.5 con dinero institucional al over.
+LV,LAR,7.5,46.5,59,70,59,65,local over,Dinero respetado con Raiders +7.5 bajando la línea hasta +3.5. En total dinero coordinado impulsando el over hacia 48.5.
+SEA,KC,-3,45.5,12,28,80,35,visitante under,El 88 % de tickets con Chiefs (+2.5). RLM de libro en total: 80 % del público al over pero cayó de 45.5 a 42.5 por dinero profesional al under.
+PHI,DAL,-3,48.5,36,22,39,25,visitante under,Vuelco monumental: Dallas pasó a favorito -4.5 con dinero profesional abrumador. En total el under absorbió el 75 % del dinero bajando a 44.5.`;
 const DATA_PP=`equipo,jugador,tipo,linea,cuota_over,cuota_under,media,pj,nota
 LAR,Matthew Stafford,pase,285.5,1.87,1.87,314.4,5,Línea de SportsBettingDime (14 oct)
 DAL,Dak Prescott,pase,277.5,1.87,1.88,276.2,5,Línea de SportsBettingDime (14 oct)
@@ -1475,15 +1530,23 @@ const INJ_POS=p=>{p=String(p||"").toUpperCase();if(p==="QB")return"QB";if(/^(RB|
 const INJ_IMP={QB:{Out:-4,Doubtful:-3,Questionable:-1},SK:{Out:-0.5,Doubtful:-0.4,Questionable:0},OL:{Out:-0.3,Doubtful:-0.2},DEF:{Out:-0.3,Doubtful:-0.2}};
 const INJ_ES={Out:"Fuera",Doubtful:"Dudoso",Questionable:"Duda"};
 function parseSplitsHTML(html){
-  if(!html)return[];const out=[],singles=[];
-  const findTeams=txt=>{const f=[];const seen=new Set();const tryMap=(map)=>{for(const k in map){const re=new RegExp("(^|[^A-Za-z])"+k.replace(/\./g,"\\.")+"([^A-Za-z]|$)","i");const m=re.exec(txt);if(m&&!seen.has(map[k])){seen.add(map[k]);f.push([m.index,map[k]])}}};tryMap(NICK);tryMap(CITY);return f.sort((a,b)=>a[0]-b[0]).map(x=>x[1])};
+  if(!html)return[];
+  if(typeof html==="object"&&Array.isArray(html))return html;
+  if(typeof html==="string"&&html.trim().startsWith("[")&&html.trim().endsWith("]")){try{return JSON.parse(html)}catch(e){}}
+  const out=[],singles=[];
+  const findTeams=txt=>{const f=[];const seen=new Set();const tryMap=(map)=>{for(const k in map){const re=new RegExp("(^|[^A-Za-z0-9])"+k.replace(/\./g,"\\.")+"([^A-Za-z0-9]|$)","i");const m=re.exec(txt);if(m&&!seen.has(map[k])){seen.add(map[k]);f.push([m.index,map[k]])}}};tryMap(ABBR);tryMap(NICK);tryMap(CITY);return f.sort((a,b)=>a[0]-b[0]).map(x=>x[1])};
   String(html).split(/<tr[\s>]/i).slice(1).forEach(r=>{r=r.split(/<\/tr>/i)[0];
     const cells=r.split(/<t[dh][\s>]/i).slice(1).map(c=>c.replace(/<[^>]+>/g," ").replace(/&nbsp;/g," ").replace(/&amp;/g,"&").replace(/\s+/g," ").trim());
-    const teams=findTeams(cells.join(" | "));if(!teams.length)return;
+    const teams=findTeams(cells[0]||cells.join(" | "));if(teams.length<2)return;
     const per=cells.map(c=>(c.match(/(\d{1,3})\s?%/g)||[]).map(x=>parseInt(x)));
-    if(teams.length>=2){const pairs=per.filter(p=>p.length===2&&Math.abs(p[0]+p[1]-100)<=2);if(pairs.length>=4)out.push({away:teams[0],home:teams[1],sh:pairs[0],sb:pairs[1],th:pairs[2],tb:pairs[3]})}
-    else{const flat=per.filter(p=>p.length===1).map(p=>p[0]);if(flat.length>=4)singles.push({team:teams[0],p:flat})}});
-  for(let i=0;i+1<singles.length;i+=2){const a=singles[i],h=singles[i+1];if(Math.abs(a.p[0]+h.p[0]-100)>2)continue;out.push({away:a.team,home:h.team,sh:[a.p[0],h.p[0]],sb:[a.p[1],h.p[1]],th:[a.p[2],h.p[2]],tb:[a.p[3],h.p[3]]})}
+    if(cells.length>=4&&per[2]&&per[2].length===2){
+      out.push({away:teams[0],home:teams[1],sb:per[2],sh:per[2],tb:[50,50],th:[50,50]});
+      return;
+    }
+    const pairs=per.filter(p=>p.length===2&&Math.abs(p[0]+p[1]-100)<=2);
+    if(pairs.length>=4)out.push({away:teams[0],home:teams[1],sh:pairs[0],sb:pairs[1],th:pairs[2],tb:pairs[3]});
+    else if(pairs.length>=1)out.push({away:teams[0],home:teams[1],sb:pairs[0],sh:pairs[0],tb:[50,50],th:[50,50]});
+  });
   return out;
 }
 function transformRaw(o){
@@ -1532,6 +1595,11 @@ function transformRaw(o){
     if(rows.length){injOut=toCSV(["equipo","jugador","pos","estado","impacto_pts","nota"],rows);log.push(`${rows.length} jugadores en el parte de lesiones`)}else warn.push("El parte de lesiones de esta semana aún no está publicado en nflverse.")}
   else warn.push("Sin parte de lesiones.");
   // mercado
+  let mktFinal = null;
+  if(o.mercado && typeof o.mercado === "string" && o.mercado.trim()){
+    mktFinal = o.mercado.trim();
+    log.push("tickets y dinero profesional cargados");
+  }
   const SP=parseSplitsHTML(o.splits),mOld=parseCSV(mktCsvText).rows,mh=parseCSV(DATA_MKT).headers,mRows=[];
   games.forEach(g=>{const old=mOld.find(r=>String(r.local).toUpperCase()===g.local&&String(r.visitante).toUpperCase()===g.visitante);
     const s=SP.find(x=>x.home===g.local&&x.away===g.visitante)||SP.find(x=>x.home===g.visitante&&x.away===g.local&&(x._sw=true));
@@ -1541,12 +1609,12 @@ function transformRaw(o){
     mRows.push(r)});
   const nSp=games.filter(g=>SP.some(x=>(x.home===g.local&&x.away===g.visitante)||(x.home===g.visitante&&x.away===g.local))).length;
   if(o.splits){if(nSp)log.push(`tickets y dinero de ${nSp} partidos`);else warn.push("Se descargó la página de tickets y dinero pero no se pudo leer (puede haber cambiado de diseño). Se mantienen los porcentajes anteriores.")}else warn.push("Sin datos de tickets y dinero.");
-  return{week,games:toCSV(gh,games),teams:teamsOut,inj:injOut,mkt:toCSV(mh,mRows),log,warn};
+  return{week,games:toCSV(gh,games),teams:teamsOut,inj:injOut,mkt:mktFinal || toCSV(mh,mRows),log,warn};
 }
 
-const curWeek=()=>S.dataWeek||6;
+const curWeek=()=>S.dataWeek||7;
 const propsFresh=()=>(S.propsWeek||6)>=curWeek();
-const recoFresh=()=>curWeek()===6;
+const recoFresh=()=>curWeek()>=7;
 /* cargar datos */
 const DS=[
  {k:"games",name:"Partidos, cuotas, clima y tendencias",get:()=>gamesCsvText,set:v=>{gamesCsvText=v;$("gamesCsv").value=v},def:()=>DATA_GAMES,tab:"jornada",need:["local","visitante"],src:"Las cuotas de tu casa de apuestas (hándicap, total y ganador) y la previsión del tiempo de cada estadio."},
@@ -1576,7 +1644,7 @@ function renderDS(){
       </div><div class="msg" id="dsMsg${i}"></div></div>`}).join("");
   $("dataLabel").value=S.dataLabel||"";
 }
-function renderLabel(){const bs=$("brandSub");if(bs)bs.textContent=`NFL ${S.dataSeason||2026}, semana ${S.dataWeek||6}`;const m=document.querySelector(".topbar .meta");if(m)m.innerHTML=S.dataLabel?`Datos: <b>${esc(S.dataLabel)}</b><br>${S.dataSrc==="auto"?"Actualización automática":"Cargados por ti"}`:`Actualizado el <b>18 de octubre</b><br>Estadísticas hasta la semana 5`}
+function renderLabel(){const bs=$("brandSub");if(bs)bs.textContent=`NFL ${S.dataSeason||2026}, semana ${S.dataWeek||7}`;const m=document.querySelector(".topbar .meta");if(m)m.innerHTML=S.dataLabel?`Datos: <b>${esc(S.dataLabel)}</b><br>${S.dataSrc==="auto"?"Actualización automática":"Cargados por ti"}`:`Actualizado el <b>25 de octubre</b><br>Datos y Dinero Profesional: Semana 7`}
 document.addEventListener("change",e=>{const i=e.target.dataset&&e.target.dataset.dsfile;if(i===undefined)return;const f=e.target.files[0];if(!f)return;const r=new FileReader();
   r.onload=()=>{const err=loadDS(DS[+i],String(r.result));renderDS();const m=$("dsMsg"+i);m.className=err?"msg err":"msg ok";{const k=parseCSV(DS[+i].get()).rows.length;m.textContent=err||`${k} ${k===1?"fila cargada":"filas cargadas"} de ${f.name}.`}};r.readAsText(f)});
 document.addEventListener("click",e=>{const t=e.target.closest("[data-dsedit],[data-dstpl],[data-dsdown],[data-dsreset]");if(!t)return;
@@ -1597,11 +1665,11 @@ function importPkg(txt){S.dataSrc="";const m=$("pkgMsg");setTimeout(()=>{try{m.s
 
 /* parlays recomendados */
 const RECO=[
- {id:"seguro",name:"El más seguro",n:"5 selecciones",txt:"Las cinco selecciones más probables de la jornada: dos favoritos claros y tres con ventaja del modelo.",legs:["WAS en SF: SF gana","LAC en KC: KC gana","CAR en PHI: CAR gana","Isaiah Likely más de 4.5 recepciones","Puka Nacua más de 7.5 recepciones"]},
- {id:"equilibrado",name:"Equilibrado",n:"6 selecciones",txt:"El anterior sin los Chiefs (los profesionales van con los Chargers) y con dos quarterbacks contra defensas que conceden mucho por pase.",legs:["WAS en SF: SF gana","CAR en PHI: CAR gana","Isaiah Likely más de 4.5 recepciones","Puka Nacua más de 7.5 recepciones","Jordan Love más de 1.5 TD de pase","Kirk Cousins más de 1.5 TD de pase"]},
- {id:"sistema",name:"Equilibrado como sistema 5 de 6",n:"6 apuestas de 5",sys:5,txt:"Las mismas seis jugadas como sistema: ganas si aciertas 5 o 6. La opción con mejor equilibrio entre riesgo y premio.",legs:["WAS en SF: SF gana","CAR en PHI: CAR gana","Isaiah Likely más de 4.5 recepciones","Puka Nacua más de 7.5 recepciones","Jordan Love más de 1.5 TD de pase","Kirk Cousins más de 1.5 TD de pase"]},
- {id:"largo",name:"Largo",n:"7 selecciones",txt:"El equilibrado más Drake Maye. Paga más, pero la séptima selección añade mucho riesgo y poca ventaja.",legs:["WAS en SF: SF gana","CAR en PHI: CAR gana","Isaiah Likely más de 4.5 recepciones","Puka Nacua más de 7.5 recepciones","Jordan Love más de 1.5 TD de pase","Kirk Cousins más de 1.5 TD de pase","Drake Maye más de 1.5 TD de pase"]},
- {id:"valor",name:"Valor del modelo",n:"5 selecciones",txt:"Donde el modelo más se separa de la casa. El más arriesgado: paga mucho porque la casa lo ve bastante menos probable.",legs:["Matthew Stafford más de 285.5 yardas de pase","Jordan Love más de 269.5 yardas de pase","CAR en PHI: CAR −3","BUF en LV: Más de 53.5","Bijan Robinson más de 89.5 yardas de carrera"]}
+ {id:"seguro",name:"El más seguro",n:"5 selecciones",txt:"Las cinco selecciones más probables de la jornada: favoritos claros y con ventaja según el modelo.",legs:["NYG en HOU: HOU gana","IND en MIN: MIN gana","MIA en NYJ: NYJ gana","DEN en ARI: DEN gana","SF en ATL: SF gana"]},
+ {id:"equilibrado",name:"Equilibrado",n:"6 selecciones",txt:"Favoritos fiables combinados con selecciones respaldadas por dinero profesional.",legs:["NYG en HOU: HOU gana","IND en MIN: MIN gana","MIA en NYJ: NYJ gana","TB en CAR: CAR gana","GB en DET: DET gana","PIT en NO: Más de 44.5"]},
+ {id:"sistema",name:"Equilibrado como sistema 5 de 6",n:"6 apuestas de 5",sys:5,txt:"Las mismas seis jugadas como sistema: cobras si aciertas 5 o 6. La mejor relación riesgo-premio de la jornada.",legs:["NYG en HOU: HOU gana","IND en MIN: MIN gana","MIA en NYJ: NYJ gana","TB en CAR: CAR gana","GB en DET: DET gana","PIT en NO: Más de 44.5"]},
+ {id:"largo",name:"Largo",n:"7 selecciones",txt:"El equilibrado más Dallas Cowboys tras el vuelco de línea del dinero profesional.",legs:["NYG en HOU: HOU gana","IND en MIN: MIN gana","MIA en NYJ: NYJ gana","TB en CAR: CAR gana","GB en DET: DET gana","PIT en NO: Más de 44.5","DAL en PHI: DAL gana"]},
+ {id:"valor",name:"Valor del modelo y dinero profesional",n:"5 selecciones",txt:"Donde el modelo y las apuestas de profesionales coinciden frente al público.",legs:["DEN en ARI: ARI +4.5","SF en ATL: ATL +2.5","IND en MIN: Menos de 41.5","KC en SEA: Menos de 42.5","LAR en LV: LV +3.5"]}
 ];
 function allLegsPool(){const keep={m:S.apMode,p:S.apPro,o:S.apMinOdds,e:S.apExcl,k:S.apK};S.apMode="valor";S.apPro="todos";S.apMinOdds=1.01;S.apExcl=[];S.apK=999;
   let out=[];try{candidateGroups(0).forEach(g=>g.forEach(l=>out.push(l)))}finally{S.apMode=keep.m;S.apPro=keep.p;S.apMinOdds=keep.o;S.apExcl=keep.e;S.apK=keep.k}return out}
